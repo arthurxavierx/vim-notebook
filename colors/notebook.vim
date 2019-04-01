@@ -7,14 +7,9 @@
 " License:      GPLv3+
 " ------------------------------------------------------------------------------
 
-" Preamble {{{
-
-let g:colors_name = 'notebook'
-
-if version > 580
-  if exists('syntax_on')
-    syntax reset
-  endif
+if version > 580 && exists('syntax_on')
+  hi clear
+  syntax reset
 endif
 if has('termguicolors')
   set termguicolors
@@ -22,6 +17,13 @@ endif
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
+
+if exists('g:colors_name')
+  unlet g:colors_name
+endif
+let g:colors_name = 'notebook'
+
+" Preamble {{{
 
 function! s:hi(group, fg, bg, gui)
   let l:res = 'hi ' . a:group
